@@ -1,0 +1,22 @@
+-- Source table before transformation
+SELECT customer_id, order_date, total_amount
+FROM raw_orders;
+
+-- Apply Transformation: Change order date format and classify order value
+SELECT 
+    customer_id,
+    CONVERT(VARCHAR, order_date, 103) AS formatted_order_date,  -- Format date
+    CASE 
+        WHEN total_amount > 1000 THEN 'High Value'
+        WHEN total_amount BETWEEN 500 AND 1000 THEN 'Medium Value'
+        ELSE 'Low Value'
+    END AS order_value_classification
+FROM raw_orders;
+
+-- Validate Transformation in Target Table
+SELECT 
+    customer_id, 
+    formatted_order_date, 
+    order_value_classification
+FROM transformed_orders
+WHERE customer_id NOT IN (SELECT customer_id FROM raw_orders);
