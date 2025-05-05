@@ -1,0 +1,15 @@
+-- Complex join to get a report on customers and their orders with product details
+SELECT 
+    c.customer_name,
+    c.email,
+    o.order_id,
+    o.order_date,
+    p.product_name,
+    oi.quantity,
+    oi.quantity * p.price AS total_price
+FROM customers c
+INNER JOIN orders o ON c.customer_id = o.customer_id
+INNER JOIN order_items oi ON o.order_id = oi.order_id
+INNER JOIN products p ON oi.product_id = p.product_id
+WHERE o.order_date BETWEEN '2025-01-01' AND '2025-12-31'
+ORDER BY o.order_date DESC;
