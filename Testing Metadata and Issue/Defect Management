@@ -1,0 +1,19 @@
+-- Checking for metadata integrity (Customer data)
+
+-- Source table: customers
+SELECT customer_id, customer_name, email
+FROM customers
+WHERE customer_id IS NOT NULL;
+
+-- Test for missing or incomplete metadata (e.g., missing email)
+SELECT customer_id, customer_name, email
+FROM customers
+WHERE email IS NULL;
+
+-- Issue/Defect Management: Track missing metadata issues
+SELECT 
+    customer_id, 
+    'Missing Email' AS issue_type,
+    current_timestamp AS issue_reported_at
+FROM customers
+WHERE email IS NULL;
