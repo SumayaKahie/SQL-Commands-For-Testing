@@ -1,0 +1,21 @@
+-- Test Data Validation: Checking if records exist in both source and target tables
+
+-- Source table: orders_source
+SELECT COUNT(*) AS source_record_count
+FROM orders_source;
+
+-- Target table after ETL process: orders_target
+SELECT COUNT(*) AS target_record_count
+FROM orders_target;
+
+-- Validation: Check if records are identical after transformation
+SELECT 
+    o.order_id,
+    o.order_date,
+    o.total_amount,
+    ot.order_id AS target_order_id,
+    ot.order_date AS target_order_date,
+    ot.total_amount AS target_total_amount
+FROM orders_source o
+LEFT JOIN orders_target ot ON o.order_id = ot.order_id
+WHERE o.total_amount != ot.total_amount OR o.order_date != ot.order_date;
