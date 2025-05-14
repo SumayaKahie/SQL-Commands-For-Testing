@@ -20,3 +20,21 @@ DELETE FROM employees WHERE name = 'Angelo';
 -- Verify Angelo was removed
 SELECT * FROM employees WHERE name = 'Angelo';
 
+
+
+## More Structured
+
+-- Test Case: Add and verify Finance department
+
+-- Step 1: Insert
+INSERT INTO department (name, location) VALUES ('Finance', 'London');
+
+-- Step 2: Verify
+SELECT * FROM department WHERE name = 'Finance' AND location = 'London';
+
+-- Optional: Count check
+SELECT COUNT(*) AS record_count FROM department WHERE name = 'Finance' AND location = 'London';
+
+-- Step 3: Clean up
+DELETE FROM department WHERE name = 'Finance' AND location = 'London';
+
