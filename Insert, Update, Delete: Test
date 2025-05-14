@@ -1,0 +1,22 @@
+-- Test Case 1: Insert a new employee
+INSERT INTO employees (name, age, department) VALUES ('Sumaya', 35, 'HR');
+
+-- Verify the employee was added
+SELECT * FROM employees WHERE name = 'Sumaya';
+
+
+
+-- Test Case 2: Update Angelo's age
+UPDATE employees SET age = 36 WHERE name = 'Angelo';
+
+-- Verify the age was updated
+SELECT age FROM employees WHERE name = 'Angelo';
+
+
+
+-- Test Case 3: Delete Angelo from the table
+DELETE FROM employees WHERE name = 'Angelo';
+
+-- Verify Angelo was removed
+SELECT * FROM employees WHERE name = 'Angelo';
+
